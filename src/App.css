@@ -1,23 +1,92 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 100%;
+}
+
 body {
-  font-family: "Poppins", sans-serif;
   background: linear-gradient(to right, #ff7e5f, #feb47b);
+  font-family: "Poppins", sans-serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  justify-content: center;
+  min-height: 100vh;
   margin: 0;
 }
 
-.card {
-  background-color: white;
+header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+  padding: 1rem;
+}
+
+header h1 {
+  color: white;
+  background-color: #772020bd;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
+  flex: 1;
+}
+
+.score-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 200px;
+  background-color: #772020bd;
+  color: white;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 10px;
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.card {
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ccfbfebd;
+  border-radius: 1em;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.card.clicked {
+  background-color: red;
 }
 
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-name {
+  color: #000000;
+  text-transform: capitalize; /* Ensures names are not in all caps */
+}
+
+img {
+  height: 120px;
+  border-radius: 1em;
 }
 
 .matched {
@@ -26,4 +95,59 @@ body {
 
 .incorrect {
   border: 2px solid red;
+}
+
+.game-over-container,
+.congratulations-container {
+  text-align: center;
+  color: white;
+  background-color: #772020bd;
+  border-radius: 10px;
+  padding: 2em;
+  margin: 2em;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.game-over-container.fade-in,
+.congratulations-container.fade-in {
+  opacity: 1;
+}
+
+.game-over-text,
+.congratulations-text {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.retry-button {
+  background-color: #ff7e5f;
+  color: white;
+  border: none;
+  padding: 1em 2em;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.retry-button:hover {
+  background-color: #feb47b;
+}
+
+@media (max-width: 600px) {
+  .score-container {
+    max-width: 100%;
+    margin: 1em 0;
+  }
+
+  .card-container {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  img {
+    height: 100px;
+  }
 }
