@@ -4,6 +4,11 @@ import "./App.css";
 
 export default function App() {
   const [arr, setArr] = useState([]);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [gameOver, setGameOver] = useState(false);
+  const [congratulations, setCongratulations] = useState(false);
+  const [clickedName, setClickedName] = useState("");
 
   async function fetchData() {
     try {
