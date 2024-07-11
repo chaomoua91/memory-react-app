@@ -111,10 +111,31 @@ export default function App() {
       <header>
         <h1>Pokémon Memory Game!</h1>
         <div className="score-container">
-          {/* <p>Score:{score}</p>
-          <p>Best Score:{bestScore}</p> */}
+          <p>Score: {score}</p>
+          <p>Best Score: {bestScore}</p>
         </div>
       </header>
+      {gameOver ? (
+        <div className="game-over-container fade-in">
+          <p className="game-over-text">
+            Game Over! You clicked {clickedName} twice!
+          </p>
+          <button className="retry-button" onClick={handleRetry}>
+            Retry
+          </button>
+        </div>
+      ) : congratulations ? (
+        <div className="congratulations-container fade-in">
+          <p className="congratulations-text">
+            Congratulations! You matched all the cards!
+          </p>
+          <button className="retry-button" onClick={handleRetry}>
+            Play Again
+          </button>
+        </div>
+      ) : (
+        <Card array={arr} onclick={handleCardChange}></Card>
+      )}
     </>
   );
 }
