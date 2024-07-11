@@ -1,5 +1,9 @@
 import { useState, useEffect } from "react";
+import Header from "./components/Header";
+import GameOver from "./components/GameOver";
+import Score from "./components/Score";
 import Card from "./components/Card";
+import Congratulations from "./components/Congratulations";
 import "./App.css";
 
 export default function App() {
@@ -97,7 +101,6 @@ export default function App() {
       );
     }
   }
-  console.log(handleCardChange);
 
   function handleRetry() {
     setGameOver(false);
@@ -109,34 +112,14 @@ export default function App() {
 
   return (
     <>
-      <header>
-        <h1>Pokémon Memory Game!</h1>
-        <div className="score-container">
-          <p>Score: {score}</p>
-          <p>Best Score: {bestScore}</p>
-        </div>
-      </header>
-      {gameOver ? (
-        <div className="game-over-container fade-in">
-          <p className="game-over-text">
-            Game Over! You clicked {clickedName} twice!
-          </p>
-          <button className="retry-button" onClick={handleRetry}>
-            Retry
-          </button>
-        </div>
-      ) : congratulations ? (
-        <div className="congratulations-container fade-in">
-          <p className="congratulations-text">
-            Congratulations! You matched all the cards!
-          </p>
-          <button className="retry-button" onClick={handleRetry}>
-            Play Again
-          </button>
-        </div>
-      ) : (
-        <Card array={arr} onclick={handleCardChange}></Card>
+      <Header />
+      <Score score={score} bestScore={bestScore} />
+      {gameOver && (
+        <GameOver clickedName={clickedName} handleRetry={handleRetry} />
       )}
+      {congratulations && <Congratulations handleRetry={handleRetry} />}
+
+      <Card array={arr} onclick={handleCardChange}></Card>
     </>
   );
 }
