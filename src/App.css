@@ -24,16 +24,57 @@ header {
   width: 100%;
   max-width: 1280px;
   padding: 1rem;
+  margin-top: auto;
+  position: relative;
+  background-color: #772020bd;
 }
 
 header h1 {
   color: white;
-  background-color: #772020bd;
   border-radius: 10px;
   padding: 1em;
-  margin: 1em;
+  margin: 1em auto;
   text-align: center;
   flex: 1;
+  max-width: 80%;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  max-width: 80%;
+  margin: auto;
+}
+
+ul li {
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+
+ul li::before {
+  content: "•";
+  color: white;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+@media (max-width: 425px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  header h1 {
+    margin: 0.5em auto;
+    font-size: 1.5em;
+  }
+
+  ul {
+    margin-top: 1em;
+  }
 }
 
 .score-container {
@@ -133,7 +174,13 @@ img {
   background-color: #feb47b;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  header {
+    max-width: 100%;
+    margin: 1em 0;
+    flex-direction: column;
+  }
+
   .score-container {
     max-width: 100%;
     margin: 1em 0;
