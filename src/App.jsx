@@ -60,6 +60,28 @@ export default function App() {
     }
   }
 
+  function settingScores(array, name) {
+    array.forEach((element) => {
+      if (element.name === name) {
+        element.timesClicked += 1;
+        if (element.timesClicked > 1) {
+          setClickedName(name);
+          setBestScore(Math.max(score, bestScore));
+          setScore(0);
+          setTimeout(() => {
+            setGameOver(true);
+          }, 500);
+        } else {
+          setScore(score + 1);
+          if (score + 1 === array.length) {
+            setBestScore(score + 1);
+            setCongratulations(true);
+          }
+        }
+      }
+    });
+  }
+
   return (
     <>
       <header>
