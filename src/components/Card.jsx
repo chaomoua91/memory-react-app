@@ -1,4 +1,4 @@
-export default function Card({ array, onClick }) {
+export default function Card({ array, onclick }) {
   return (
     <div className="card-container">
       {array.map((element, i) => (
@@ -6,7 +6,7 @@ export default function Card({ array, onClick }) {
           key={i}
           className={`card ${element.timesClicked > 1 ? "clicked" : ""}`}
           name={element.name}
-          onClick={() => onClick(element.name)}
+          onClick={() => onclick(element.name)}
         >
           <img
             src={`https://img.pokemondb.net/artwork/${element.name}.jpg`}

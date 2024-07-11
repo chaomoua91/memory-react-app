@@ -97,6 +97,7 @@ export default function App() {
       );
     }
   }
+  console.log(handleCardChange);
 
   function handleRetry() {
     setGameOver(false);
