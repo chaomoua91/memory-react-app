@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import GameOver from "./components/GameOver";
 import Score from "./components/Score";
@@ -14,6 +14,45 @@ export default function App() {
   const [gameOver, setGameOver] = useState(false);
   const [congratulations, setCongratulations] = useState(false);
   const [clickedName, setClickedName] = useState("");
+
+  const fetchData = async () => {
+    try {
+      const totalResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon-species/`
+      );
+      const totalData = await totalResponse.json();
+      const totalPokemon = totalData.count;
+
+      const randomIndices = [];
+      while (randomIndices.length < 12) {
+        const randomIndex = Math.floor(Math.random() * totalPokemon) + 1;
+        if (!randomIndices.includes(randomIndex)) {
+          randomIndices.push(randomIndex);
+        }
+      }
+
+      const promises = randomIndices.map((index) =>
+        fetch(`https://pokeapi.co/api/v2/pokemon/${index}`).then((response) =>
+          response.json()
+        )
+      );
+      const results = await Promise.all(promises);
+
+      const processedResults = results.map((el) => ({
+        name: el.name,
+        isClicked: false,
+        timesClicked: 0,
+      }));
+
+      setArr(processedResults);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
