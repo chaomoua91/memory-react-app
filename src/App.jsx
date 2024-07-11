@@ -82,6 +82,22 @@ export default function App() {
     });
   }
 
+  function handleCardChange(name) {
+    settingScores(arr, name);
+    if (!gameOver && !congratulations) {
+      shuffleArray(arr);
+      setArr(
+        arr.map((element) => {
+          if (element.name === name) {
+            return { ...element, isClicked: true };
+          } else {
+            return element;
+          }
+        })
+      );
+    }
+  }
+
   return (
     <>
       <header>
