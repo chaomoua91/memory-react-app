@@ -98,6 +98,14 @@ export default function App() {
     }
   }
 
+  function handleRetry() {
+    setGameOver(false);
+    setCongratulations(false);
+    setClickedName("");
+    setScore(0);
+    fetchData();
+  }
+
   return (
     <>
       <header>
